@@ -46,7 +46,7 @@ end
 
 local input_name
 if part:sub(2) == "e" then
-  input_name = "example"
+  input_name = "example" .. part:sub(1, 1)
 else
   input_name = "input"
 end
@@ -61,7 +61,13 @@ local cmd = ("./lua %s <%s"):format(script_path, input_path)
 print(cmd)
 do
   local p = assert(io.popen(cmd, "r"))
-  local s = assert(p:read("a"))
+  repeat
+    local line = p:read "L"
+    if line then
+      io.write(line)
+    else
+      break
+    end
+  until false
   p:close()
-  io.write(s)
 end

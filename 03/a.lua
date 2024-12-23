@@ -1,4 +1,3 @@
-
 local function sum_all_muls(line)
   local sum = 0
   local pattern = "mul%((%d%d?%d?),(%d%d?%d?)%)"
